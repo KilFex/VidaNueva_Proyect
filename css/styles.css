@@ -37,7 +37,8 @@ header {
   .logo img {
     width: 100%;
     max-width: 412px;
-    height: auto;
+    height: 18rem;
+    border-radius: 1rem;
   }
 }
 
@@ -45,4 +46,9 @@ header {
 .bottom-content {
   margin-bottom: 1rem; /* Añade espacio inferior, si es necesario */
   text-align: center;
+  color: blue;
 }
+.audio-container{
+  text-align: center;
+}
+
