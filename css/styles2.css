@@ -1,0 +1,117 @@
+/* Estilo general */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f0f8ff;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    overflow: hidden; /* Evitar desplazamiento en la ventana principal */
+}
+
+/* Contenedor principal */
+.audio-player {
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    width: 350px;
+    text-align: center;
+}
+
+/* Logo */
+.logo img {
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 20px;
+    border-radius: 5px;
+}
+
+/* Título */
+h1 {
+    font-size: 24px;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+/* Información de la pista */
+#trackInfo {
+    margin-bottom: 15px;
+    font-size: 18px;
+    color: #555;
+}
+
+/* Botón para mostrar/ocultar lista */
+#toggleButton {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-bottom: 10px;
+    transition: background-color 0.3s ease;
+}
+
+#toggleButton:hover {
+    background-color: #45a049;
+}
+
+/* Personalización del reproductor de audio */
+audio {
+    width: 100%;
+    margin: 10px 0;
+    outline: none;
+}
+
+/* Lista de pistas */
+.track-list {
+    max-height: 300px; /* Tamaño fijo para listas largas */
+    overflow-y: scroll; /* Activar scroll para contenido extenso */
+    margin-top: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 10px;
+    background-color: #f9f9f9;
+}
+
+.track-list.hidden {
+    display: none;
+}
+
+.track-item {
+    background-color: #f7f9fc;
+    padding: 10px;
+    margin: 5px 0;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    color: #333;
+    font-size: 16px;
+}
+
+.track-item:hover {
+    background-color: #dceafc;
+    transform: scale(1.05);
+}
+
+.track-item:active {
+    background-color: #c3ddf5;
+}
+
+/* Agregar scroll suave */
+.track-list::-webkit-scrollbar {
+    width: 6px;
+}
+
+.track-list::-webkit-scrollbar-thumb {
+    background: #ccc;
+    border-radius: 3px;
+}
+
+.track-list::-webkit-scrollbar-thumb:hover {
+    background: #aaa;
+}

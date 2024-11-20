@@ -51,23 +51,48 @@ const audios =[
     {title:"Capitulo 50", src:"./audio/capitulo_50.mp3"},
 ];
 
-const audioListContainer = document.getElementById('audioList');
+const audioPlayer = document.getElementById('audioPlayer');
+        const trackList = document.getElementById('trackList');
+        const currentTrack = document.getElementById('currentTrack');
+        const toggleButton = document.getElementById('toggleButton');
 
-audios.forEach(audio => {
-     const audioContainer = document.createElement('div');
-     audioContainer.className = 'audio-container';
+        let currentTrackIndex = -1;
 
-    const audioTitle = document.createElement('p');
-    audioTitle.textContent = audio.title;
-    
-    const audioElement = document.createElement('audio');
-    audioElement.controls = true;
-    audioElement.src = audio.src;
+        
+        audios.forEach((audio, index) => {
+            const trackItem = document.createElement('div');
+            trackItem.className = 'track-item';
+            trackItem.textContent = audio.title;
 
-    audioContainer.appendChild(audioTitle);
-    audioContainer.appendChild(audioElement);
+            trackItem.addEventListener('click', () => {
+                currentTrackIndex = index;
+                playTrack(currentTrackIndex);
+            });
 
-    audioListContainer.appendChild(audioContainer);
+            trackList.appendChild(trackItem);
+        });
 
+        
+        toggleButton.addEventListener('click', () => {
+            trackList.classList.toggle('hidden');
+        });
 
-});
+        
+        function playTrack(index) {
+            const audio = audios[index];
+            if (audio) {
+                currentTrack.textContent = `Reproduciendo: ${audio.title}`;
+                audioPlayer.src = audio.src;
+                audioPlayer.play();
+            }
+        }
+
+        
+        audioPlayer.addEventListener('ended', () => {
+            if (currentTrackIndex < audios.length - 1) {
+                currentTrackIndex++;
+                playTrack(currentTrackIndex);
+            } else {
+                currentTrack.textContent = "Reproducción completada.";
+            }
+        });
