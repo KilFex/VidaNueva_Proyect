@@ -1,25 +1,25 @@
-/* Estilo general */
+
 body {
   font-family: 'Arial', sans-serif;
   background-color: #f0f8ff;
   margin: 0;
   padding: 0;
-  overflow-y: auto; /* Permitir scroll general */
-  min-height: 100vh; /* Asegurar que la página ocupe al menos toda la pantalla */
+  overflow-y: auto; 
+  min-height: 100vh; 
 }
 
-/* Contenedor principal */
+
 .audio-player {
   background-color: #ffffff;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   padding: 20px;
   width: 350px;
-  margin: 20px auto; /* Centrar el reproductor */
+  margin: 20px auto; 
   text-align: center;
 }
 
-/* Logo */
+
 .logo img {
   max-width: 70%;
   height: auto;
@@ -27,22 +27,22 @@ body {
   border-radius: 5px;
 }
 
-/* Título */
+
 h1 {
   font-size: 24px;
   margin-bottom: 10px;
   color: #333;
 }
 
-/* Información de la pista */
+
 #trackInfo {
   margin-bottom: 15px;
   font-size: 18px;
   color: #555;
 }
 
-/* Botón para mostrar/ocultar lista */
-#toggleButton {
+
+#toggleGenesis, #toggleExodus {
   background-color: #4CAF50;
   color: white;
   border: none;
@@ -58,17 +58,17 @@ h1 {
   background-color: #45a049;
 }
 
-/* Personalización del reproductor de audio */
+
 audio {
   width: 100%;
   margin: 10px 0;
   outline: none;
 }
 
-/* Lista de pistas */
+
 .track-list {
-  max-height: 300px; /* Tamaño fijo para listas largas */
-  overflow-y: scroll; /* Activar scroll para contenido extenso */
+  max-height: 300px; 
+  overflow-y: scroll; 
   margin-top: 15px;
   border: 1px solid #ddd;
   border-radius: 5px;
@@ -100,7 +100,7 @@ audio {
   background-color: #c3ddf5;
 }
 
-/* Scroll general estilizado */
+
 body::-webkit-scrollbar {
   width: 8px;
 }

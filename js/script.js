@@ -1,98 +1,76 @@
-const audios =[
-    {title:"Capitulo 1", src:"./audio/capitulo_1.mp3"},
-    {title:"Capitulo 2", src:"./audio/capitulo_2.mp3"},
-    {title:"Capitulo 3", src:"./audio/capitulo_3.mp3"},
-    {title:"Capitulo 4", src:"./audio/capitulo_4.mp3"},
-    {title:"Capitulo 5", src:"./audio/capitulo_5.mp3"},
-    {title:"Capitulo 6", src:"./audio/capitulo_6.mp3"},
-    {title:"Capitulo 7", src:"./audio/capitulo_7.mp3"},
-    {title:"Capitulo 8", src:"./audio/capitulo_8.mp3"},
-    {title:"Capitulo 9", src:"./audio/capitulo_9.mp3"},
-    {title:"Capitulo 10", src:"./audio/capitulo_10.mp3"},
-    {title:"Capitulo 11", src:"./audio/capitulo_11.mp3"},
-    {title:"Capitulo 12", src:"./audio/capitulo_12.mp3"},
-    {title:"Capitulo 13", src:"./audio/capitulo_13.mp3"},
-    {title:"Capitulo 14", src:"./audio/capitulo_14.mp3"},
-    {title:"Capitulo 15", src:"./audio/capitulo_15.mp3"},
-    {title:"Capitulo 16", src:"./audio/capitulo_16.mp3"},
-    {title:"Capitulo 17", src:"./audio/capitulo_17.mp3"},
-    {title:"Capitulo 18", src:"./audio/capitulo_18.mp3"},
-    {title:"Capitulo 19", src:"./audio/capitulo_19.mp3"},
-    {title:"Capitulo 20", src:"./audio/capitulo_20.mp3"},
-    {title:"Capitulo 21", src:"./audio/capitulo_21.mp3"},
-    {title:"Capitulo 22", src:"./audio/capitulo_22.mp3"},
-    {title:"Capitulo 23", src:"./audio/capitulo_23.mp3"},
-    {title:"Capitulo 24", src:"./audio/capitulo_24.mp3"},
-    {title:"Capitulo 25", src:"./audio/capitulo_25.mp3"},
-    {title:"Capitulo 26", src:"./audio/capitulo_26.mp3"},
-    {title:"Capitulo 27", src:"./audio/capitulo_27.mp3"},
-    {title:"Capitulo 28", src:"./audio/capitulo_28.mp3"},
-    {title:"Capitulo 29", src:"./audio/capitulo_29.mp3"},
-    {title:"Capitulo 30", src:"./audio/capitulo_30.mp3"},
-    {title:"Capitulo 31", src:"./audio/capitulo_31.mp3"},
-    {title:"Capitulo 32", src:"./audio/capitulo_32.mp3"},
-    {title:"Capitulo 33", src:"./audio/capitulo_33.mp3"},
-    {title:"Capitulo 34", src:"./audio/capitulo_34.mp3"},
-    {title:"Capitulo 35", src:"./audio/capitulo_35.mp3"},
-    {title:"Capitulo 36", src:"./audio/capitulo_36.mp3"},
-    {title:"Capitulo 37", src:"./audio/capitulo_37.mp3"},
-    {title:"Capitulo 38", src:"./audio/capitulo_38.mp3"},
-    {title:"Capitulo 39", src:"./audio/capitulo_39.mp3"},
-    {title:"Capitulo 40", src:"./audio/capitulo_40.mp3"},
-    {title:"Capitulo 41", src:"./audio/capitulo_41.mp3"},
-    {title:"Capitulo 42", src:"./audio/capitulo_42.mp3"},
-    {title:"Capitulo 43", src:"./audio/capitulo_43.mp3"},
-    {title:"Capitulo 44", src:"./audio/capitulo_44.mp3"},
-    {title:"Capitulo 45", src:"./audio/capitulo_45.mp3"},
-    {title:"Capitulo 46", src:"./audio/capitulo_46.mp3"},
-    {title:"Capitulo 47", src:"./audio/capitulo_47.mp3"},
-    {title:"Capitulo 48", src:"./audio/capitulo_48.mp3"},
-    {title:"Capitulo 49", src:"./audio/capitulo_49.mp3"},
-    {title:"Capitulo 50", src:"./audio/capitulo_50.mp3"},
-];
 
-const audioPlayer = document.getElementById('audioPlayer');
-        const trackList = document.getElementById('trackList');
-        const currentTrack = document.getElementById('currentTrack');
-        const toggleButton = document.getElementById('toggleButton');
+const audioData = {
+    genesis: Array.from({ length: 50 }, (_, i) => ({
+      title: `Génesis Capítulo ${i + 1}`,
+      src: `./audio/genesis/capitulo_${i + 1}.mp3`,
+    })),
+    exodus: Array.from({ length: 40 }, (_, i) => ({
+      title: `Éxodo Capítulo ${i + 1}`,
+      src: `./audio/exodo/ExodoCapitulo${i + 1}.mp3`,
+    })),
+  };
+  
+  
+  const audioPlayer = document.getElementById("audioPlayer");
+  const currentTrack = document.getElementById("currentTrack");
+  
 
-        let currentTrackIndex = -1;
+  const genesisList = document.getElementById("genesisList");
+  const exodusList = document.getElementById("exodusList");
+  const toggleGenesis = document.getElementById("toggleGenesis");
+  const toggleExodus = document.getElementById("toggleExodus");
+  
+  let currentTrackIndex = -1;
+  let currentBook = "genesis";
+  
+  
+  function populateAudioList(book, container) {
+    container.innerHTML = ""; 
+    audioData[book].forEach((audio, index) => {
+      const trackItem = document.createElement("div");
+      trackItem.className = "track-item";
+      trackItem.textContent = audio.title;
+  
+      trackItem.addEventListener("click", () => {
+        currentBook = book;
+        currentTrackIndex = index;
+        playTrack(currentTrackIndex);
+      });
+  
+      container.appendChild(trackItem);
+    });
+  }
+  
+  
+  toggleGenesis.addEventListener("click", () => {
+    genesisList.classList.toggle("hidden");
+  });
+  toggleExodus.addEventListener("click", () => {
+    exodusList.classList.toggle("hidden");
+  });
+  
 
-        
-        audios.forEach((audio, index) => {
-            const trackItem = document.createElement('div');
-            trackItem.className = 'track-item';
-            trackItem.textContent = audio.title;
+  function playTrack(index) {
+    const bookAudios = audioData[currentBook];
+    const audio = bookAudios[index];
+    if (audio) {
+      currentTrack.textContent = `Reproduciendo: ${audio.title}`;
+      audioPlayer.src = audio.src;
+      audioPlayer.play();
+    }
+  }
+  
+  audioPlayer.addEventListener("ended", () => {
+    const bookAudios = audioData[currentBook];
+    if (currentTrackIndex < bookAudios.length - 1) {
+      currentTrackIndex++;
+      playTrack(currentTrackIndex);
+    } else {
+      currentTrack.textContent = "Reproducción completada.";
+    }
+  });
+  
 
-            trackItem.addEventListener('click', () => {
-                currentTrackIndex = index;
-                playTrack(currentTrackIndex);
-            });
-
-            trackList.appendChild(trackItem);
-        });
-
-        
-        toggleButton.addEventListener('click', () => {
-            trackList.classList.toggle('hidden');
-        });
-
-        
-        function playTrack(index) {
-            const audio = audios[index];
-            if (audio) {
-                currentTrack.textContent = `Reproduciendo: ${audio.title}`;
-                audioPlayer.src = audio.src;
-                audioPlayer.play();
-            }
-        }
-
-        
-        audioPlayer.addEventListener('ended', () => {
-            if (currentTrackIndex < audios.length - 1) {
-                currentTrackIndex++;
-                playTrack(currentTrackIndex);
-            } else {
-                currentTrack.textContent = "Reproducción completada.";
-            }
-        });
+  populateAudioList("genesis", genesisList);
+  populateAudioList("exodus", exodusList);
+  

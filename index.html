@@ -4,24 +4,26 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="./css/styles.css" />
-    <title>Document</title>
+    <title>Reproductor Bíblico</title>
   </head>
   <body>
     <div class="audio-player">
       <div class="logo">
-          <img src="./img/logo_vida_nueva.jpg" alt="Logo" />
+        <img src="./img/logo_vida_nueva.jpg" alt="Logo" />
       </div>
       <h1>🎵 Biblia Dramatizada</h1>
       <div id="trackInfo">
-          <p id="currentTrack">Selecciona un capitulo para comenzar</p>
+        <p id="currentTrack">Selecciona un capítulo para comenzar</p>
       </div>
       <audio id="audioPlayer" controls></audio>
-      <p> GENESIS </p>
-      <button id="toggleButton">Mostrar/Ocultar Lista</button>
-      <div class="track-list hidden" id="trackList">
-          
-      </div>
-  </div>
-  <script src="./js/script.js"></script>
+      <p>📖 GÉNESIS</p>
+      <button id="toggleGenesis">Mostrar/Ocultar Génesis</button>
+      <div class="track-list hidden" id="genesisList"></div>
+
+      <p>📖 ÉXODO</p>
+      <button id="toggleExodus">Mostrar/Ocultar Éxodo</button>
+      <div class="track-list hidden" id="exodusList"></div>
+    </div>
+    <script src="./js/script.js"></script>
   </body>
 </html>
