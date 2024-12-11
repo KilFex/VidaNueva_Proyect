@@ -8,6 +8,15 @@ const audioData = {
       title: `Éxodo Capítulo ${i + 1}`,
       src: `./audio/exodo/ExodoCapitulo${i + 1}.mp3`,
     })),
+    levitico: Array.from({length: 27}, (_, i) => ({
+      title: `Levitico Capitulo ${i +1}`,
+      src: `./audio/leviticos/LeviticoCapitulo_${i + 1}.mp3`
+    })),
+    deuteronomio: Array.from({length: 34}, (_, i) => ({
+      title: `Deuteronomio Capítulo ${i + 1}`,
+      src: `./audio/deuteronomio/DeuteronomioCapitulo_${i + 1}.mp3`
+    }))
+
   };
   
   
@@ -17,8 +26,12 @@ const audioData = {
 
   const genesisList = document.getElementById("genesisList");
   const exodusList = document.getElementById("exodusList");
+  const leviticoList = document.getElementById("leviticoList");
+  const deuteronomioList = document.getElementById("deuteronomioList");
   const toggleGenesis = document.getElementById("toggleGenesis");
   const toggleExodus = document.getElementById("toggleExodus");
+  const toggleLevitico = document.getElementById("toggleLevitico");
+  const toggleDeuteronomio = document.getElementById("toggleDeuteronomio");
   
   let currentTrackIndex = -1;
   let currentBook = "genesis";
@@ -48,6 +61,12 @@ const audioData = {
   toggleExodus.addEventListener("click", () => {
     exodusList.classList.toggle("hidden");
   });
+  toggleLevitico.addEventListener("click", () => {
+    leviticoList.classList.toggle("hidden");
+  });
+  toggleDeuteronomio.addEventListener("click", () =>{
+    deuteronomioList.classList.toggle("hidden");
+  });
   
 
   function playTrack(index) {
@@ -73,4 +92,6 @@ const audioData = {
 
   populateAudioList("genesis", genesisList);
   populateAudioList("exodus", exodusList);
+  populateAudioList("levitico", leviticoList);
+  populateAudioList("deuteronomio", deuteronomioList);
   
